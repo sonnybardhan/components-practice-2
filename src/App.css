@@ -1,0 +1,17 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.accordion-title span {
+  cursor: pointer;
+  /* background-color: lightblue; */
+  background-color: pink;
+  padding: 0.25em;
+  height: 100px;
+  width: 100px;
+  margin-left: 1em;
+  /* border-radius: 50%; */
+}
