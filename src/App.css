@@ -3,6 +3,14 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .accordion-title span {
@@ -14,4 +22,22 @@
   width: 100px;
   margin-left: 1em;
   /* border-radius: 50%; */
+}
+
+.component-container {
+  width: 100%;
+  /* background-color: green; */
+  width: 100%;
+}
+
+.parent-nest {
+  text-align: left;
+}
+.parent-nest-name {
+  cursor: pointer;
+  user-select: none;
+}
+
+.App {
+  width: 100%;
 }
