@@ -1,0 +1,18 @@
+.autocomplete-container {
+  max-width: 400px;
+}
+
+.autocomplete-input {
+  width: 100%;
+}
+.search-results {
+  text-align: left;
+}
+.search-result-row {
+  border: 1px solid lightblue;
+  border-top: none;
+  cursor: pointer;
+}
+.search-result-row:hover {
+  background-color: lightblue;
+}

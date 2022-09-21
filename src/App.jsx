@@ -1,4 +1,5 @@
 import './App.css';
+import Autocomplete from './components/autocomplete/Autocomplete';
 import NestedFolders from './components/NestedFolders';
 import data from './data/data';
 
@@ -6,9 +7,8 @@ function App() {
   return (
     <div className='App'>
       <h1>Components Demo</h1>
-      <main className='component-container'>
-        <NestedFolders data={data} />
-      </main>
+      <h2>Autocomplete Demo</h2>
+      <Autocomplete />
     </div>
   );
 }
