@@ -56,9 +56,13 @@ const Autocomplete = () => {
 
   useEffect(() => {
     if (query.length >= 3) {
+      if (query?.toLowerCase() === resultDetail?.name?.common?.toLowerCase())
+        return;
+
       debouncedSearch(query);
+      setRowSelected(0);
     } else if (!query.length) {
-      setQuery('');
+      // setQuery('');
       setDisplay(false);
     }
   }, [query]);
@@ -86,9 +90,9 @@ const Autocomplete = () => {
         });
       } else if (e.key === 'Enter') {
         console.log('rowSelected: ', rowSelected);
-        setQuery('');
         setResultDetail(results[rowSelected]);
         setDisplay(false);
+        setQuery(results[rowSelected].name.common);
       }
     };
     window.addEventListener('keydown', handleKeyPress);
@@ -96,7 +100,7 @@ const Autocomplete = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [results]);
+  }, [results, rowSelected]);
 
   useEffect(() => {
     if (results.length) {
@@ -107,8 +111,8 @@ const Autocomplete = () => {
   }, [results]);
 
   function handleResultClick(e, result) {
-    // setQuery(result.name.common);
-    setQuery('');
+    setQuery(result.name.common);
+    // setQuery('');
     setResults([]);
     setResultDetail(result);
     // inputRef.current.blur();
