@@ -2,41 +2,31 @@ import './autocomplete.css';
 // const URL = 'https://restcountries.com/v2/all';
 const URL = 'https://restcountries.com/v3.1/name/';
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useRef } from 'react';
+
+// const debouncedSearch = debounce(search);
 
 const Autocomplete = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [resultDetail, setResultDetail] = useState({});
   const [display, setDisplay] = useState(false);
+  const [rowSelected, setRowSelected] = useState(0);
+  const inputRef = useRef();
 
-  useEffect(() => {
-    if (query.length >= 3) {
-      debounce(search)(query); //wrap in debounce
-    } else if (!query.length) {
-      setQuery('');
-      setDisplay(false);
-    }
+  const debouncedSearch = useCallback(debounce(search), []);
 
-    return () => {};
-  }, [query]);
+  function debounce(fn, delay = 700) {
+    let timerId;
 
-  useEffect(() => {
-    if (results.length) {
-      setDisplay(true);
-    } else {
-      setDisplay(false);
-    }
-  }, [results]);
-
-  function search(term) {
-    console.log('called');
-    fetch(URL + term)
-      .then((res) => res.json())
-      .then(transformResults)
-      .catch((err) => console.log(err));
-    // .then(setResults)
+    return function (...args) {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        console.log('called with args: ', args);
+        fn.apply(this, args);
+      }, delay);
+    };
   }
 
   function transformResults(data) {
@@ -47,15 +37,89 @@ const Autocomplete = () => {
     setResults(tempResults);
   }
 
-  function handleResultClick(e, result) {
-    setQuery(result.name.common);
-    setResults([]);
-    setResultDetail(result);
+  function search(term) {
+    fetch(URL + term)
+      .then((res) => res.json())
+      .then(transformResults)
+      .catch((err) => console.log(err));
+    // .then(setResults)
   }
 
-  const resultElements = results.map((result) => (
+  useEffect(() => {
+    const handleBlur = (e) => {
+      setDisplay(false);
+    };
+    inputRef.current.addEventListener('blur', () => handleBlur);
+
+    return () => inputRef.current.removeEventListener('blur', handleBlur);
+  }, []);
+
+  useEffect(() => {
+    if (query.length >= 3) {
+      debouncedSearch(query);
+    } else if (!query.length) {
+      setQuery('');
+      setDisplay(false);
+    }
+  }, [query]);
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      console.log(e.key);
+      if (e.key === 'Escape') {
+        setDisplay(false);
+      } else if (e.key === 'ArrowUp') {
+        setRowSelected((previousRow) => {
+          if (previousRow - 1 < 0) {
+            return results.length - 1;
+          } else {
+            return previousRow - 1;
+          }
+        });
+      } else if (e.key === 'ArrowDown') {
+        setRowSelected((previousRow) => {
+          if (previousRow + 1 > results.length - 1) {
+            return 0;
+          } else {
+            return previousRow + 1;
+          }
+        });
+      } else if (e.key === 'Enter') {
+        console.log('rowSelected: ', rowSelected);
+        setQuery('');
+        setResultDetail(results[rowSelected]);
+        setDisplay(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [results]);
+
+  useEffect(() => {
+    if (results.length) {
+      setDisplay(true);
+    } else {
+      setDisplay(false);
+    }
+  }, [results]);
+
+  function handleResultClick(e, result) {
+    // setQuery(result.name.common);
+    setQuery('');
+    setResults([]);
+    setResultDetail(result);
+    // inputRef.current.blur();
+    // setDisplay(false);
+  }
+
+  const resultElements = results.map((result, idx) => (
     <div
-      className='search-result-row'
+      className={
+        idx === rowSelected ? 'search-result-row-selected' : 'search-result-row'
+      }
       key={result.ccn3}
       onClick={(e) => handleResultClick(e, result)}
     >
@@ -63,13 +127,13 @@ const Autocomplete = () => {
     </div>
   ));
 
-  const resultDetailElements = (
+  const resultDetailElements = resultDetail.name ? (
     <div className=''>
-      <h4>{resultDetail?.name?.common}</h4>
-      <div className=''>{resultDetail?.region}</div>
-      <div className=''>{resultDetail?.status}</div>
+      <h4>{resultDetail.name.common}</h4>
+      <div className=''>{resultDetail.region}</div>
+      <div className=''>{resultDetail.status}</div>
     </div>
-  );
+  ) : null;
 
   return (
     <div className='autocomplete-container'>
@@ -79,6 +143,7 @@ const Autocomplete = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder='start typing ... '
+        ref={inputRef}
       />
       {display ? <div className='search-results'>{resultElements}</div> : null}
       {Object.keys(resultDetail).length ? (
@@ -91,15 +156,3 @@ const Autocomplete = () => {
 };
 
 export default Autocomplete;
-
-function debounce(fn, delay = 500) {
-  let timerId;
-  console.log('input ... ');
-  return function (...args) {
-    clearTimeout(timerId);
-    timerId = setTimeout(() => {
-      console.log('making API call ... ');
-      fn.apply(this, args);
-    }, delay);
-  };
-}

@@ -13,6 +13,13 @@
   border-top: none;
   cursor: pointer;
 }
+
+.search-result-row-selected {
+  border: 1px solid lightblue;
+  border-top: none;
+  cursor: pointer;
+  background-color: lightblue;
+}
 .search-result-row:hover {
   background-color: lightblue;
 }
