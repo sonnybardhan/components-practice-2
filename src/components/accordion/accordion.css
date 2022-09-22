@@ -1,0 +1,25 @@
+.accordion-title span {
+  cursor: pointer;
+  /* background-color: lightblue; */
+  background-color: pink;
+  padding: 0.25em;
+  height: 100px;
+  width: 100px;
+  margin-left: 1em;
+  /* border-radius: 50%; */
+}
+
+.component-container {
+  width: 100%;
+  /* background-color: green; */
+  width: 100%;
+}
+
+.parent-nest {
+  text-align: left;
+  /* background-color: lightblue; */
+}
+.parent-nest-name {
+  cursor: pointer;
+  user-select: none;
+}

@@ -1,14 +1,11 @@
 import './App.css';
-import Autocomplete from './components/autocomplete/Autocomplete';
-import NestedFolders from './components/NestedFolders';
-import data from './data/data';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   return (
     <div className='App'>
       <h1>Components Demo</h1>
-      <h2>Autocomplete Demo</h2>
-      <Autocomplete />
+      <Navbar />
     </div>
   );
 }

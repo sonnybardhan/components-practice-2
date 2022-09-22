@@ -1,0 +1,50 @@
+.navbar-container {
+  width: 300px;
+  height: 100vh;
+  border: 1px solid lightcyan;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: lightcyan;
+  transition: transform 0.25s linear;
+}
+
+.navbar-container .handle-icon {
+  position: absolute;
+  top: 2px;
+  left: calc(100% + 2px);
+  /* left: 101%; */
+  /* left: 101%; */
+  background-color: rgb(56, 136, 136);
+  padding: 0.25rem;
+  border-radius: 0.25em;
+  /* border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em; */
+  cursor: pointer;
+  display: flex;
+}
+
+.handle-icon span {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+.hide {
+  transform: translateX(-300px);
+}
+
+.navbar-item {
+  background-color: lightblue;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(97, 123, 131);
+}
+
+svg {
+  height: 25px;
+  color: rgb(214, 255, 8);
+}
+
+.flip {
+  transform: rotate(1260deg);
+}
