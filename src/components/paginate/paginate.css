@@ -1,0 +1,27 @@
+.content-block {
+  padding: 1rem;
+  background-color: lightblue;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.buttons-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.active {
+  background-color: rgb(245, 188, 188);
+}
+
+.end {
+  font-weight: bold;
+  font-size: larger;
+}

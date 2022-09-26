@@ -1,21 +1,27 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import './App.css';
-import Modal from './components/modal/Modal';
+import Paginate from './components/paginate/Paginate';
+
+// const URL = 'https://jsonplaceholder.typicode.com/posts?_limit=5&_start=0';
+const URL = 'https://jsonplaceholder.typicode.com/posts';
 
 function App() {
-  const [open, setOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const res = await fetch(URL);
+      const data = await res.json();
+      setPosts(data);
+    };
+    getPosts();
+  }, []);
 
   return (
-    <div className='App' onClick={() => console.log('clicked')}>
-      <h1>Components Demo</h1>
-      <button onClick={() => setOpen(true)}>Open Modal</button>
-
-      <Modal open={open} onClose={() => setOpen(false)}>
-        Some content
-      </Modal>
-      <div className='other-content'>
-        <p>Other Content here</p>
-      </div>
+    <div className='App'>
+      <h1>Components Practice</h1>
+      {posts.length ? <Paginate items={posts} /> : <p>No data</p>}
     </div>
   );
 }
