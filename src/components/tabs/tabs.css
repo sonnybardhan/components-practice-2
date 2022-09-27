@@ -1,0 +1,37 @@
+.tabs-container {
+  /* background-color: pink; */
+  padding: 0.5rem;
+  padding-bottom: 0;
+
+  display: flex;
+  justify-content: end;
+  /* gap: 1px; */
+}
+.tab {
+  background-color: rgb(143, 221, 217);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  padding: 0.25rem 1rem;
+  width: 100px;
+  cursor: pointer;
+  border: 3px solid rgb(61, 176, 170);
+  border-right: none;
+  border-bottom: none;
+}
+
+.active {
+  background-color: pink;
+  border: 3px solid rgb(224, 116, 134);
+  border-right: none;
+  border-bottom: none;
+
+  font-weight: bold;
+}
+
+.content-container {
+  padding: 1rem;
+  border: 3px solid rgb(79, 79, 79);
+  width: 100%;
+  min-height: 500px;
+  border-radius: 0.5rem;
+}
