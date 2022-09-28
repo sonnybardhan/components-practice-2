@@ -1,10 +1,12 @@
 import './App.css';
-import { data } from './components/tabs/data';
-import Tabs from './components/tabs/Tabs';
+import Content from './components/progress-bar/Content';
+import ProgressBar from './components/progress-bar/ProgressBar';
+
 function App() {
   return (
     <div className='App'>
-      <Tabs contents={data} />
+      <ProgressBar />
+      <Content />
     </div>
   );
 }
