@@ -14,12 +14,20 @@
 body {
   margin: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  width: 100%;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .App {
+  /* min-width: 100%; */
   width: 100%;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  /* background-color: blue; */
 }
 
 .App h1 {

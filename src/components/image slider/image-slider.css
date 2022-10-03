@@ -1,0 +1,40 @@
+.image-slider-container {
+  /* background-color: black; */
+  color: white;
+
+  width: 80%;
+  /* height: 100vh; */
+  height: 80vh;
+}
+
+.image-container {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+}
+
+.left-div {
+  transform: translateX(-100%);
+}
+.left-div,
+.right-div {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.328);
+  width: 5%;
+  display: grid;
+  place-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.center-div {
+  height: 100%;
+  background-color: transparent;
+  width: 90%;
+}
+
+.right-div {
+  transform: translateX(100%);
+}

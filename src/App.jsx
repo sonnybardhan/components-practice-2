@@ -1,12 +1,10 @@
 import './App.css';
-import Content from './components/progress-bar/Content';
-import ProgressBar from './components/progress-bar/ProgressBar';
+import ImageSlider from './components/image slider/ImageSlider';
 
 function App() {
   return (
     <div className='App'>
-      <ProgressBar />
-      <Content />
+      <ImageSlider />
     </div>
   );
 }
