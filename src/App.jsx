@@ -1,10 +1,10 @@
 import './App.css';
-import ImageSlider from './components/image slider/ImageSlider';
+import InfiniteScroll from './components/infinite-scroll/InfiniteScroll';
 
 function App() {
   return (
     <div className='App'>
-      <ImageSlider />
+      <InfiniteScroll />
     </div>
   );
 }

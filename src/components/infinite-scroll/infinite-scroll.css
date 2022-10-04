@@ -1,0 +1,21 @@
+.infinity-scroll-container {
+  width: 40%;
+  min-height: 100vh;
+  /* background-color: pink; */
+}
+
+.infinity-scroll-container h2 {
+  text-align: center;
+}
+
+.post-container {
+  margin: 1rem;
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.post-container p {
+  margin-top: 1rem;
+  text-align: justify;
+}
