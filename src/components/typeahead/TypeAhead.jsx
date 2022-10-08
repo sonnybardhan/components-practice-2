@@ -13,6 +13,8 @@ const TypeAhead = () => {
   const [display, setDisplay] = useState(false);
   const suggestionsRef = useRef();
 
+  const debouncedFetchCountries = useCallback(debounce(fetchCountries), []);
+
   useEffect(() => {
     const handleClick = (e) => {
       if (
@@ -29,8 +31,6 @@ const TypeAhead = () => {
       document.documentElement.removeEventListener('click', handleClick);
     };
   }, []);
-
-  const debouncedFetchCountries = useCallback(debounce(fetchCountries), []);
 
   useEffect(() => {
     if (!input.length) {
