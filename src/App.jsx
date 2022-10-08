@@ -1,10 +1,10 @@
 import './App.css';
-import InfiniteScroll from './components/infinite-scroll/InfiniteScroll';
+import TypeAhead from './components/typeahead/TypeAhead';
 
 function App() {
   return (
     <div className='App'>
-      <InfiniteScroll />
+      <TypeAhead />
     </div>
   );
 }
